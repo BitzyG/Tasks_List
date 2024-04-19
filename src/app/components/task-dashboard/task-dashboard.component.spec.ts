@@ -58,18 +58,6 @@ describe('TaskDashboardComponent', () => {
     expect(component.showTask).toBeTruthy();
   });
 
-  it('Fn addTask - and set showTask to true', () => {
-    const taskName = 'New Task';
-    component.newTask = taskName;
-
-    component.addTask();
-
-    expect(component.tasks.length).toBe(1);
-    expect(component.tasks[0].name).toBe(taskName);
-    expect(component.showTask).toBeTruthy();
-    expect(component.newTask).toBe('');
-  });
-
   it('Fn deleteTask - if tasks array becomes empty', () => {
     const task = { name: 'Task 1', completed: false };
     component.tasks = [task];
@@ -89,5 +77,41 @@ describe('TaskDashboardComponent', () => {
 
     expect(component.tasks.length).toBe(1);
     expect(component.tasks[0].name).toBe(task2.name);
+  });
+
+  it('Fn addTask - should add a task to the list if it does not already exist', () => {
+    component.newTask = 'New Task';
+    component.tasks = [{ name: 'Existing Task', completed: false }];
+
+    component.addTask();
+
+    expect(component.tasks.length).toBe(2);
+    expect(component.tasks[1].name).toBe('New Task');
+    expect(component.showTask).toBe(true);
+    expect(component.showErrorMessage).toBe(false);
+    expect(component.errorMessage).toBe('');
+  });
+
+  it('Fn addTask - should not add a task if it already exists and show error message', () => {
+    component.newTask = 'Existing Task';
+    component.tasks = [{ name: 'Existing Task', completed: false }];
+
+    component.addTask();
+    
+    expect(component.tasks.length).toBe(1);
+    expect(component.showTask).toBe(false);
+    expect(component.showErrorMessage).toBe(true);
+    expect(component.errorMessage).toBe('Esta Tarea ya existe');
+  });
+
+  it('Fn addTask - should not add a task if newTask is empty', () => {
+    component.newTask = '';
+
+    component.addTask();
+
+    expect(component.tasks.length).toBe(0);
+    expect(component.showTask).toBe(false);
+    expect(component.showErrorMessage).toBe(false);
+    expect(component.errorMessage).toBe('');
   });
 });
