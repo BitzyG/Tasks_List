@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
 import { TaskDashboardComponent } from './components/task-dashboard/task-dashboard.component';
 import { reducers } from './commons/store/app.reducer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { reducers } from './commons/store/app.reducer';
     TaskDashboardComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
