@@ -33,7 +33,7 @@ export class LoginComponent {
     
     this.authService.login(username, password).subscribe((loggedIn: boolean) => {
       if (loggedIn) {
-        this.store.dispatch(loginSuccess({user: userData}));
+        this.store.dispatch(loginSuccess({username: userData.username}));
         this.router.navigate(['/taskDashboard']); 
         this.showErrorMessage = false;
       } else {

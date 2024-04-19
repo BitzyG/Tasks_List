@@ -7,3 +7,8 @@ export const isLoggedIn = createSelector(
   selectAuthState,
   (authState: AuthState) => authState.isLoggedIn
 );
+
+export const getUsername = createSelector(
+  selectAuthState,
+  (authState: AuthState) => authState.username
+);

@@ -1,1 +1,44 @@
-<p>task-dashboard works!</p>
+<section class="body d-flex flex-column">
+    <div class="d-flex align-items-center justify-content-between font bg-success navBar">
+        <h4 class="ms-3 mb-0" *ngIf="username | async as username">Lista de Tareas de: {{ username }}</h4>
+    </div>
+
+    <div class="d-flex">
+        <form (ngSubmit)="addTask()" class="mx-3 my-3 d-flex" style="width: 25%;">
+            <input type="text" class="form-control focus-ring-success" id="newTask" autocomplete="on"
+                placeholder="Ingresa una tarea" name="newTask" [(ngModel)]="newTask" pattern="[a-zA-Z0-9\s]+" required>
+
+            <button class="btn btn-success w-20 py-2 ms-3 focus-ring-success" type="submit">Agregar</button>
+        </form>
+    </div>
+
+    <div class="row d-flex my-5" >
+
+        <div class="card mx-5" style="width: 50rem;">
+            <div class="card-header">
+                To Do:
+              </div>
+              <div>
+                  <ul class="list-group list-group-flush"  *ngIf="showTask">
+                      <li class="list-group-item d-flex justify-content-between" *ngFor="let task of tasks">
+                          <input type="checkbox" [(ngModel)]="task.completed" class="pr-3">
+                          <span [class.completed]="task.completed" class="px-3 font">{{ task.name }}</span>
+                          <button type="button" class="btn btn-danger" (click)="deleteTask(task)" [hidden]="task.completed">X</button>
+                      </li>
+                  </ul>
+                  <ul class="list-group list-group-flush"  *ngIf="!showTask">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="px-3 font">Agrega una tarea c:</span>
+                    </li>
+                </ul>
+              </div>
+        </div>
+
+    </div>
+
+    <section class="backgroundImg">
+        <div class="d-flex align-items-baseline">
+            <img src="../../../assets/to_do_list.svg" alt="img_to_do_list">
+        </div>
+    </section>
+</section>
