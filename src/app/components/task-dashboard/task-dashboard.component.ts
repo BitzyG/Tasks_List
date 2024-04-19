@@ -18,6 +18,8 @@ export class TaskDashboardComponent implements OnInit {
   tasks: Task[] = [];
   showTask: boolean = false;
 
+  showErrorMessage: boolean = false;
+  errorMessage: string = '';
 
   constructor(private store: Store<AppState>,
     private router: Router,
@@ -43,11 +45,27 @@ export class TaskDashboardComponent implements OnInit {
 
   addTask() {
     if (this.newTask.trim() !== '') {
-      this.tasks.push({ name: this.newTask, completed: false });
-      this.newTask = '';
-      this.showTask = true;
+      if (this.tasks.find(task => task.name === this.newTask.trim())) {
+        this.showErrorMessage = true;
+        this.errorMessage = 'Esta Tarea ya existe';
+      } else {
+        this.tasks.push({ name: this.newTask.trim(), completed: false });
+        this.newTask = '';
+        this.showTask = true;
+        this.showErrorMessage = false;
+        this.errorMessage = '';
+      }
     }
   }
+  
+
+  // addTask() {
+  //   if (this.newTask.trim() !== '') {
+  //     this.tasks.push({ name: this.newTask, completed: false });
+  //     this.newTask = '';
+  //     this.showTask = true;
+  //   }
+  // }
 
   deleteTask(task: Task) {
     const index = this.tasks.indexOf(task);

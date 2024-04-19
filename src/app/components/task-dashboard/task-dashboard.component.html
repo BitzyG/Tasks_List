@@ -4,17 +4,18 @@
     </div>
 
     <div class="d-flex">
-        <form (ngSubmit)="addTask()" class="mx-3 my-3 d-flex" style="width: 25%;">
+        <form (ngSubmit)="addTask()" class="mx-3 my-3 d-flex sectionInputs">
             <input type="text" class="form-control focus-ring-success" id="newTask" autocomplete="on"
                 placeholder="Ingresa una tarea" name="newTask" [(ngModel)]="newTask" pattern="[a-zA-Z0-9\s]+" required>
 
             <button class="btn btn-success w-20 py-2 ms-3 focus-ring-success" type="submit">Agregar</button>
         </form>
     </div>
+    <label *ngIf="showErrorMessage" class="text-danger ms-3"><strong>{{this.errorMessage}}</strong></label>
 
     <div class="row d-flex my-5" >
 
-        <div class="card mx-5" style="width: 50rem; z-index: 1">
+        <div class="card mx-5 sectionInputs">
             <div class="card-header">
                 To Do:
               </div>

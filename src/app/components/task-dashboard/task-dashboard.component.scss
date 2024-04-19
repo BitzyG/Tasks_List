@@ -1,16 +1,36 @@
-.body{
+.body {
     height: 100vh;
+    box-sizing: border-box;
 }
 
 .navBar {
     width: 100vw;
     height: 50px;
     color: #fff;
+    box-sizing: border-box;
 }
 
-.backgroundImg{
+.backgroundImg {
     display: block;
     position: absolute;
     bottom: 10px;
     right: 10px;
+}
+
+.sectionInputs {
+    width: 50%;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .sectionInputs {
+        width: 80%;
+    }
+
+    .backgroundImg {
+        img {
+            width: 80%;
+            margin: auto;
+        }
+    }
 }

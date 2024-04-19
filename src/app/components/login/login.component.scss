@@ -8,3 +8,26 @@
 form {
     width: 80%;
 }
+
+@media (max-width: 768px) {
+    .imgGirl{
+        display: none;
+    }
+    .form-signin {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 576px) {
+    .imgGirl{
+        display: none;
+    }
+    .form-signin {
+        width: 90vw;
+        border-radius: 1.5rem;
+    }
+
+    form {
+        width: 90%;
+    }
+}
