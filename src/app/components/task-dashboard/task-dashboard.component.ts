@@ -57,15 +57,6 @@ export class TaskDashboardComponent implements OnInit {
       }
     }
   }
-  
-
-  // addTask() {
-  //   if (this.newTask.trim() !== '') {
-  //     this.tasks.push({ name: this.newTask, completed: false });
-  //     this.newTask = '';
-  //     this.showTask = true;
-  //   }
-  // }
 
   deleteTask(task: Task) {
     const index = this.tasks.indexOf(task);
